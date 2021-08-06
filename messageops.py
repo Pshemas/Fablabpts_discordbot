@@ -1,29 +1,40 @@
-#all the things that do something with the Discord message
-
+# all the things that do something with the Discord message
+from pydantic import BaseModel, ValidationError
+from typing import Optional
 from datetime import datetime
 
 
-def cleanmessage(messagecontent, cutindex):
-    ''' takes the message content and removes initial chars 
-    (defined by cutindex) used to invoke discord bot from it. 
-    Then it splits it and creates a list [int(amount), message body]'''
+def extractdata(message):
+    ''' extracts data for Google Sheets from message, 
+    removes command used to invoke bot. Returns dict.'''
 
-    withoutprefix = messagecontent[cutindex:]
-    cleaned = withoutprefix.split(' ', 1)
-    cleaned[0] = int(cleaned[0])
-    return cleaned
+    withoutprefix = message.clean_content
+    cleaned = withoutprefix.split(' ', 2)
+    cleaned[1] = int(cleaned[1])
+    dataset = {"discordid": message.author.id, "name": message.author.name + '#' +
+               message.author.discriminator, "nick": message.author.nick, 
+               "amount": cleaned[1], "body": cleaned[2]}
+    return dataset
 
 
-class SheetEntry:
-    ''' Creates a proper entry for google sheets from the Discord message. 
-    [datetime, id, name#discriminator, nick, amount, msg body, status]'''
+class SheetData(BaseModel):
+    '''Container for data used in GoogleSheets. Dataset goes through pydantic,
+     so it could be validated more easily.'''
+     
+    datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    discordid: str
+    name: str
+    nick: Optional[str]
+    amount: int
+    body: str
+    status = 'nowy'
 
-    def __init__(self, message, cutindex):
-        self.row = []
-        self.row.append(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        self.row.append(message.author.id)
-        self.row.append(message.author.name + '#' +
-                        message.author.discriminator)
-        self.row.append(message.author.nick)
-        self.row = self.row + (cleanmessage(message.clean_content, cutindex))
-        self.row.append('nowy')
+    def as_row(self):
+        '''returns data as a list so it could be added to 
+        Google Sheets easily'''
+        return [self.datetime, self.discordid, self.name, self.nick,
+                 self.amount, self.body, self.status]
+
+    def negativevalue(self):
+        '''switches the amount to its negative value''' 
+        self.amount = -self.amount

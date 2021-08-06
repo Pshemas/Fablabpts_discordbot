@@ -1,5 +1,4 @@
-#All the things thar do something with Google Spreadsheet
-
+# All the things thar do something with Google Spreadsheet
 import gspread
 import constants
 
@@ -8,14 +7,13 @@ spreadsheet = gconnection.open_by_key(constants.SPREADSHEET_ID)
 scores = spreadsheet.worksheet(constants.SCORES)
 log = spreadsheet.worksheet(constants.LOG)
 
-
 class SheetOps:
 
-    def addentry(sheetentry):
+    def addentry(row):
         '''adds entry to the Google Spreadsheet / logs. 
         Should be passed as a list [name, pts, body, status]'''
 
-        log.append_row(sheetentry)
+        log.append_row(row)
 
     def top5():
         '''Returns list of lists with top 5 scores recorded'''

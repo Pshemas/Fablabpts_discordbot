@@ -17,18 +17,18 @@ async def on_message(message):
         return
 
     if message.content.startswith('$dodaj'):
-        newentry = SheetEntry(message,7)
-        SheetOps.addentry(newentry.row)
-        await message.channel.send(f'+{newentry.row[4]} dla {newentry.row[2]} oczekuje na rozliczenie')
+        newentry = SheetData.parse_obj(extractdata(message))
+        SheetOps.addentry(newentry.as_row())
+        await message.channel.send(f'+{newentry.amount} dla {newentry.name} oczekuje na rozliczenie')
 
     if message.content.startswith('$wydaj'):
-        newentry = SheetEntry(message,7)
-        newentry.row[4] = -newentry.row[4]
-        SheetOps.addentry(newentry.row)
-        await message.channel.send(f'{newentry.row[4]} dla {newentry.row[2]} oczekuje na rozliczenie')
+        newentry = SheetData.parse_obj(extractdata(message))
+        newentry.negativevalue()
+        SheetOps.addentry(newentry.as_row())
+        await message.channel.send(f'{newentry.amount} dla {newentry.name} oczekuje na rozliczenie')
 
     if message.content.startswith('$moje'):
-        await message.channel.send('Twoj wynik to %s' % SheetOps.myscore(str(message.author)))
+        await message.channel.send('Ilość Twoich fabcoinów to: %s' % SheetOps.myscore(str(message.author)))
 
 
 def main():
