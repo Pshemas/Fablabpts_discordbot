@@ -15,9 +15,10 @@ class SheetOps:
 
         log.append_row(row)
 
-    def top5():
-        '''Returns list of lists with top 5 scores recorded'''
-        query = scores.get("A2:B6")
+    def topscores(howmany):
+        '''Returns list of lists with top scores recorded'''
+        query = scores.get(f"A2:B{howmany+1}")
+        #+1 because first row reserverd for titles
         return query
 
     def myscore(discord_username):
@@ -27,3 +28,4 @@ class SheetOps:
             if entry[constants.DISCORDNAME] == discord_username:
                 return entry[constants.TOTALUSERSCORE]
                 break
+~                       
