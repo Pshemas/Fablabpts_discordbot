@@ -3,7 +3,7 @@
 DISCORDTOKEN = " "
 GOOGLESHEETSKEYFILE = " "
 SPREADSHEET_ID = " "
-SCORES = "wyniki" #name of a worksheet with summed up scores
+SCORES = "ranking" #name of a worksheet with summed up scores
 LOG = "fbclog" #name of a worksheet with all the records
 
 

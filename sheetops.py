@@ -47,10 +47,10 @@ class SheetOps:
         #+1 because first row reserverd for titles
         return query
 
-    def myscore(discord_username):
+    def myscore(discord_name):
         '''Returns user score'''
         query = scores.get_all_records()
         for entry in query:
-            if entry[constants.DISCORDNAME] == discord_username:
+            if entry[constants.DISCORDNAME] == discord_name:
                 return entry[constants.TOTALUSERSCORE]
                 break
