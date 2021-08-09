@@ -33,6 +33,9 @@ async def on_message(message):
     if message.content.startswith('$top5'):
         await message.channel.send(scores_enumarated_withtitle("Top5",SheetOps.topscores(5)))
 
+    if message.content.startswith('$pomoc'):
+        await message.channel.send(showhelp())
+
 
 def main():
     client.run(constants.DISCORDTOKEN)
