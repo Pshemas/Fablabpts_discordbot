@@ -7,11 +7,18 @@ def extractdata(message):
 
     withoutprefix = message.clean_content
     cleaned = withoutprefix.split(' ', 2)
+    if len(cleaned) == 3:
+        try:
+            cleaned[1] = int(cleaned[1])
+        except ValueError:
+            raise AmountNotInt
 
-    cleaned[1] = int(cleaned[1])
-    dataset = {"discordid": message.author.id, "name": message.author.name + '#' +
-               message.author.discriminator, "nick": message.author.nick, "amount": cleaned[1], "body": cleaned[2]}
-    return dataset
+        else:    
+            dataset = {"discordid": message.author.id, "name": message.author.name + '#' +
+                       message.author.discriminator, "nick": message.author.nick, "amount": cleaned[1], "body": cleaned[2]}
+            return dataset
+    else:
+        raise MissingArgument
 
 
 def scores_enumarated_withtitle(title, scorelist):
