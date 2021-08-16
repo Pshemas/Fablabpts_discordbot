@@ -1,6 +1,7 @@
 from errors import *
 import discord
 
+
 def extractdata(message):
     ''' extracts data for Google Sheets from message, 
     removes command used to invoke bot. Returns dict.'''
@@ -13,7 +14,9 @@ def extractdata(message):
         except ValueError:
             raise AmountNotInt
 
-        else:    
+        else:
+            if cleaned[1] < 0:  # make sure numbers are positive
+                cleaned[1] = -cleaned[1]
             dataset = {"discordid": message.author.id, "name": message.author.name + '#' +
                        message.author.discriminator, "nick": message.author.nick, "amount": cleaned[1], "body": cleaned[2]}
             return dataset
