@@ -1,4 +1,4 @@
-# All the things thar do something with Google Spreadsheet
+# All the things that do something with Google Spreadsheet
 import gspread
 import constants
 from pydantic import BaseModel, ValidationError
@@ -35,7 +35,7 @@ class SheetData(BaseModel):
 
 class SheetOps:
 
-    def addentry(row):
+    def sendentry(row):
         '''adds entry to the Google Spreadsheet / logs. 
         Should be passed as a list [name, pts, body, status]'''
 
@@ -44,7 +44,7 @@ class SheetOps:
     def topscores(howmany):
         '''Returns list of lists with top scores recorded'''
         query = scores.get(f"A2:B{howmany+1}")
-        #+1 because first row reserverd for titles
+        #+1 because first row reserved for titles
         return query
 
     def myscore(discord_name):
@@ -54,3 +54,4 @@ class SheetOps:
             if entry[constants.DISCORDNAME] == discord_name:
                 return entry[constants.TOTALUSERSCORE]
                 break
+

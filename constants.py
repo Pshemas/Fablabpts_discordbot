@@ -12,3 +12,15 @@ LOG = "fbclog" #name of a worksheet with all the records
 DISCORDNAME = 'discord name' #column with discord usernames
 DISCORDID = 'id'
 TOTALUSERSCORE = 'SUM of ile' #pivot table column with summed scores
+NEWENTRYSTATUS = 'nowy' #default status of a new entry
+
+#command names - make sure to start with sign like $
+
+ADDPOINTS = '$dodaj'
+SUBTRACTPOINTS = '$wydaj'
+TOP5 = '$top5'
+USERSCORE = '$moje'
+HELP = '$pomoc'
+
+#custom messages
+NOPMREPLY = "The bot is not accepting PMs"
