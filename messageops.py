@@ -3,7 +3,7 @@ import discord
 
 
 def extractdata(message):
-    ''' extracts data for Google Sheets from message, 
+    ''' extracts data for Google Sheets from message,
     removes command used to invoke bot. Returns dict.'''
 
     withoutprefix = message.clean_content

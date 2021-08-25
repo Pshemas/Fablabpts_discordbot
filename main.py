@@ -6,20 +6,21 @@ from errors import *
 
 client = discord.Client()
 
+
 async def create_entry(message, operationtype):
     '''Takes the message, prepares entry for Sheets and sends it.
     Requires "operationtype" as parameter as well - 
     so the value can be set to negative if needed.''' 
-    #feels this def should be moved somewhere.
-    #Both sheetops and messageops seem wrong.
-    #Remains here for now.
+#    feels this def should be moved somewhere.
+#    Both sheetops and messageops seem wrong.
+#    Remains here for now.
 
     try:
         newentry = SheetData.parse_obj(extractdata(message))
-    
+
     except MissingArgument as err:
         await message.channel.send(err)
-    
+
     except AmountNotInt as err:
         await message.channel.send(err)
 
@@ -28,7 +29,6 @@ async def create_entry(message, operationtype):
             newentry.negativevalue()
         SheetOps.sendentry(newentry.as_row())
         await message.channel.send(f'{newentry.amount} dla {newentry.name} oczekuje na rozliczenie')
-
 
 
 @client.event

@@ -1,5 +1,5 @@
-#Some errors that should be catched...
-#... and user should get some output
+# Some errors that should be catched...
+# ... and user should get some output
 
 class AmountNotInt(Exception):
     '''Error initialized when user didn't enter the value after the command,
@@ -7,6 +7,7 @@ class AmountNotInt(Exception):
     def __init__(self):
         message = "Twoj FabcoinBot zgłupiał. Ilość fabcoinów nie jest liczbą. Po nazwie polecenia (np. $dodaj) powinna znaleźć się ilość fabcoinów wyrażona jako liczba całkowita (np. 5)."
         super().__init__(message)
+
 
 class MissingArgument(Exception):
     '''Error initialized when user didn't enter all the required arguments'''

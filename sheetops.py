@@ -10,6 +10,7 @@ spreadsheet = gconnection.open_by_key(constants.SPREADSHEET_ID)
 scores = spreadsheet.worksheet(constants.SCORES)
 log = spreadsheet.worksheet(constants.LOG)
 
+
 class SheetData(BaseModel):
     '''Container for data used in GoogleSheets. Dataset goes through pydantic,
      so it could be validated more easily.'''
@@ -54,4 +55,3 @@ class SheetOps:
             if entry[constants.DISCORDNAME] == discord_name:
                 return entry[constants.TOTALUSERSCORE]
                 break
-
