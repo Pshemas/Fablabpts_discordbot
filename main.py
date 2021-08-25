@@ -9,8 +9,9 @@ client = discord.Client()
 
 async def create_entry(message, operationtype):
     '''Takes the message, prepares entry for Sheets and sends it.
-    Requires "operationtype" as parameter as well - 
-    so the value can be set to negative if needed.''' 
+    Requires "operationtype" as parameter as well -
+    so the value can be set to negative if needed.'''
+
 #    feels this def should be moved somewhere.
 #    Both sheetops and messageops seem wrong.
 #    Remains here for now.

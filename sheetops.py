@@ -24,7 +24,7 @@ class SheetData(BaseModel):
     status = 'nowy'
 
     def as_row(self):
-        '''returns data as a list so it could be added to 
+        '''returns data as a list so it could be added to
         Google Sheets easily'''
         return [self.datetime, self.discordid, self.name, self.nick,
                 self.amount, self.body, self.status]
@@ -37,7 +37,7 @@ class SheetData(BaseModel):
 class SheetOps:
 
     def sendentry(row):
-        '''adds entry to the Google Spreadsheet / logs. 
+        '''adds entry to the Google Spreadsheet / logs.
         Should be passed as a list [name, pts, body, status]'''
 
         log.append_row(row)
@@ -45,7 +45,7 @@ class SheetOps:
     def topscores(howmany):
         '''Returns list of lists with top scores recorded'''
         query = scores.get(f"A2:B{howmany+1}")
-        #+1 because first row reserved for titles
+        # +1 because first row reserved for titles
         return query
 
     def myscore(discord_name):
