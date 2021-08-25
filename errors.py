@@ -1,5 +1,7 @@
 # Some errors that should be catched...
 # ... and user should get some output
+# Customize the message -
+# so it matches the language used.
 
 class AmountNotInt(Exception):
     '''Error initialized when user didn't enter the value after the command,
