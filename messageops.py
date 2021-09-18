@@ -27,13 +27,20 @@ def extractdata(message):
 def scores_enumarated_withtitle(title, scorelist):
     '''Takes list (of lists) with scores and returns it as enumerated string'''
 
-    message = str(title)+'\n'
+    message = str(title) + '\n'
     counter = 1
     for item in scorelist:
-        message += str(counter)+'. '+item[0]+' '+item[1]+'fbc \n'
+        message += str(counter) + '. ' + item[0] + ' ' + item[1] + 'fbc \n'
         counter += 1
     return message
 
 
 def showhelp():
-    return ("FabcoinBot zrozumie te polecenia:\n**$dodaj ilość za_co** \n - doda ci fabcoiny (pojawią się na liście po zaakceptowaniu przez Wojtka / Abdu). \n**$wydaj ilość za_co** \n- zarejestruje wydanie Twoich fabcoinów. \n**$top5** \nwyświetli listę 5 osób z największą ilością fabcoinów. \n**$moje** \n-wyświetli ile masz fabcoinów. \nWażne! Zmiany nie są wprowadzane od razu. Każda transakcja przechodzi weryfikację - co może potrwać do 2 dni. \nPrzykładowe poprawne polecenie dodania:\n$dodaj 5 sprzątanie pracowni ")
+    return ("FabcoinBot zrozumie te polecenia:\n**$dodaj ilość za_co** \n \
+        - doda ci fabcoiny (pojawią się na liście po zaakceptowaniu przez \
+        Wojtka / Abdu). \n**$wydaj ilość za_co** \n- zarejestruje wydanie \
+        Twoich fabcoinów. \n**$top5** \nwyświetli listę 5 osób z największą \
+        ilością fabcoinów. \n**$moje** \n-wyświetli ile masz fabcoinów.\
+         \nWażne! Zmiany nie są wprowadzane od razu. Każda transakcja \
+         przechodzi weryfikację - co może potrwać do 2 dni. \nPrzykładowe \
+         poprawne polecenie dodania:\n$dodaj 5 sprzątanie pracowni ")

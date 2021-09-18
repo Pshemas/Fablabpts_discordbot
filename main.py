@@ -57,7 +57,7 @@ async def on_message(message):
         await message.channel.send('Ilość Twoich fabcoinów to: %s' % SheetOps.myscore(str(message.author)))
 
     if message.content.startswith(constants.TOP5):
-        await message.channel.send(scores_enumarated_withtitle("Top5",SheetOps.topscores(5)))
+        await message.channel.send(scores_enumarated_withtitle("Top5", SheetOps.topscores(5)))
 
     if message.content.startswith(constants.HELP):
         await message.channel.send(showhelp())
